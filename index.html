@@ -33,8 +33,11 @@
             <select onchange="formatDoc('fontName', this.value)">
                 <option value="Arial" selected>Arial</option>
                 <option value="Georgia">Georgia</option>
-                <option value="Times New Roman">Times New Roman</option>                    <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
             </select>
+
+            <button id="saveButton">Salvar no Supabase</button>
         </div>
         
        <div id="editor" contenteditable="true" class="editor-content">
@@ -42,9 +45,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-
-
 
 </body>
 </html>
