@@ -14,7 +14,7 @@ function formatDoc(command, value = null) {
     }
 }
 
-// Função para extrair as partes do texto
+// Função para extrair partes do texto entre underscores
 function findUnderlinedText(text) {
     // Regex para encontrar texto entre underscores
     const regex = /_([^_]+)_/g;
@@ -28,24 +28,45 @@ function findUnderlinedText(text) {
     return matches;
 }
 
+// Função para extrair partes do texto entre asteriscos
+function findAsteriskText(text) {
+    const regex = /\*([^*]+)\*/g;
+    const matches = [];
+    let match;
+
+    while ((match = regex.exec(text)) !== null) {
+        matches.push(match[1]);
+    }
+
+    return matches;
+}
+
 // Adicionar um ouvinte de evento para o botão "Salvar"
 document.getElementById('saveButton').addEventListener('click', async () => {
     const editor = document.getElementById('editor');
-    // Pega o texto do editor, ignorando o HTML
     const rawText = editor.innerText;
 
-    const extractedParts = findUnderlinedText(rawText);
+    const extractedUnderlines = findUnderlinedText(rawText);
+    const extractedAsterisks = findAsteriskText(rawText);
 
-    if (extractedParts.length === 0) {
-        alert("Nenhuma parte do texto entre underlines foi encontrada para salvar.");
+    if (extractedUnderlines.length === 0 || extractedAsterisks.length === 0) {
+        alert("O texto precisa ter palavras entre underlines e asteriscos para salvar.");
         return;
     }
 
-    const dataToInsert = extractedParts.map(part => ({ 
-        palavra: part,
-        significado: ""}));
+    // Verifica se o número de palavras com underline e com asterisco é o mesmo
+    if (extractedUnderlines.length !== extractedAsterisks.length) {
+        alert("O número de palavras com underline e asterisco não corresponde. Verifique seu texto.");
+        return;
+    }
 
-    // Substitua 'memoryhack' pelo nome da sua tabela no Supabase
+    // Mapeia os dois arrays em um array de objetos
+    const dataToInsert = extractedUnderlines.map((word, index) => ({ 
+        palavra: word,
+        significado: extractedAsterisks[index]
+    }));
+
+    // Agora, o objeto dataToInsert terá os dois valores para cada linha
     const { data, error } = await supabase
         .from('memoryhack')
         .insert(dataToInsert);
