@@ -8,38 +8,44 @@ body {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 40px;
-    padding: 10px;
     height: 400px;
     width: 400px;
-    border-radius: 40px;
+    
+    /* MODIFICAÇÕES PARA POSICIONAR O BOTÃO */
+    display: flex;
+    flex-direction: column;
+    padding: 16px; /* Ajuste o padding para 16px em todas as bordas */
 }
 
+/* Modificamos o alinhamento para o canto inferior direito */
 .toolbar {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha se não houver espaço */
-    gap: 10px; /* Adiciona um espaçamento entre os itens */
+    justify-content: center; /* Alinha o conteúdo à direita */
+    align-items: flex-start; /* Alinha o conteúdo ao topo do eixo cruzado */
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin-top: auto; /* Empurra a toolbar para o fundo do container */
 }
 
 /* Estiliza o botão de salvar */
 #saveButton {
-    background-color: #843138; /* Cor de fundo azul */
-    color: white; /* Cor do texto branco */
-    border: none; /* Remove a borda padrão */
-    padding: 15px 30px; /* Aumenta a altura e a largura do botão */
-    border-radius: 40px;  /* Altera o arredondamento da borda */
-    font-size: 16px; /* Aumenta o tamanho da fonte */
+    background-color: #843138; 
+    color: white; 
+    border: none; 
+    padding: 15px 30px; 
+    border-radius: 40px; 
+    font-size: 16px; 
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 56;
+    height: 56px; /* Adicionei 'px' */
     width: 320px;
 }
 
 #saveButton:hover {
-    background-color: #843138; /* Cor mais escura ao passar o mouse */
+    background-color: #6a242a; /* Cor levemente diferente no hover para dar feedback visual */
 }
 
+/* Estilos para os outros botões */
 .toolbar button {
     padding: 8px 12px;
     margin-right: 5px;
@@ -54,9 +60,11 @@ body {
     background-color: #e9e9e9;
 }
 
+/* Permite que o editor de texto ocupe todo o espaço disponível */
 .editor-content {
     min-height: 200px;
     padding: 10px;
     outline: none;
     line-height: 1.6;
+    flex-grow: 1;
 }
