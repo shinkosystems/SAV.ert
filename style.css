@@ -10,16 +10,35 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    height: 700px;
+    height: 400px;
+    width: 550px;
+    border-radius: 40px;
 }
 
-.toolbar select {
-    padding: 7px 10px;
-    margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
+.toolbar {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha se não houver espaço */
+    gap: 10px; /* Adiciona um espaçamento entre os itens */
+}
+
+/* Estiliza o botão de salvar */
+#saveButton {
+    background-color: #843138; /* Cor de fundo azul */
+    color: white; /* Cor do texto branco */
+    border: none; /* Remove a borda padrão */
+    padding: 15px 30px; /* Aumenta a altura e a largura do botão */
+    border-radius: 40px;  /* Altera o arredondamento da borda */
+    font-size: 16px; /* Aumenta o tamanho da fonte */
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 56;
+    width: 320px;
+}
+
+#saveButton:hover {
+    background-color: #843138; /* Cor mais escura ao passar o mouse */
 }
 
 .toolbar button {
